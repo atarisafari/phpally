@@ -1,6 +1,7 @@
 <?php
 
 namespace CidiLabs\PhpAlly;
+use Psr\Log\LoggerInterface;
 
 use DOMDocument;
 
@@ -15,7 +16,7 @@ class PhpAlly {
         return $this->checkMany($content, [$ruleId], $options);
     }
 
-    public function checkMany($content, $ruleIds = [], $options = [])
+    public function checkMany($content, $ruleIds = [], $options = [], LoggerInterface $logger)
     {
         $report = new PhpAllyReport();
         $document = $this->getDomDocument($content);
@@ -25,7 +26,7 @@ class PhpAlly {
                 $className = 'CidiLabs\\PhpAlly\\Rule\\' . $ruleId;
                 if (!class_exists($className)) {
                     $report->setError('Rule does not exist.');
-                    print("Rule does not exist");
+                    $logger->error("Rule does not exist");
                     continue;
                 }           
 
@@ -38,7 +39,7 @@ class PhpAlly {
                 $report->setError($e->getMessage());
             }
         }
-        print_r($report);
+        $logger->info($report);
         return $report;
     }
 

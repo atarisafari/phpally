@@ -7,6 +7,7 @@ use CidiLabs\PhpAlly;
 use CidiLabs\PhpAlly\Vimeo;
 use CidiLabs\PhpAlly\Youtube;
 use GuzzleHttp\Client;
+use Psr\Log\LoggerInterface;
 
 /**
 *	Videos with manual captions should have some that match the course language

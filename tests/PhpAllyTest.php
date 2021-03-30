@@ -43,7 +43,7 @@ class PhpAllyTest extends PhpAllyTestCase {
     <p>hiiiiiiiiiii</p>';
         $report = $ally->checkMany($html, $ally->getRuleIds());
         $issues = $report->getIssues();
-        print_r($issues);
+        // print_r($issues);
         // $issue = reset($issues);
 
         $this->phpAllyReportTest($report);
