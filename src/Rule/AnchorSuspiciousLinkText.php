@@ -22,7 +22,7 @@ class AnchorSuspiciousLinkText extends BaseRule
 
     public function check()
     {
-        $this->debug_to_console("hello");
+        $this->debug_to_console("hello from anchor sus");
         foreach ($this->getAllElements('a') as $a) {
             if (in_array(strtolower(trim($a->nodeValue)), $this->translation()) || $a->nodeValue == $a->getAttribute('href'))
 				$this->setIssue($a);
