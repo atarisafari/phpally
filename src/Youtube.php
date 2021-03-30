@@ -25,9 +25,10 @@ class Youtube {
     private $link_url;
     private $api_key = 'AIzaSyB5bTf8rbYwiM73k1rj8dDnwEalwTqdz_c';
     
-    public function __construct($client)
+    public function __construct($client, $language = 'en')
     {
 		$this->client = $client;
+		$this->language = $language;
     }
 
     /**
@@ -94,13 +95,15 @@ class Youtube {
 
 		// If for whatever reason course_locale is blank, set it to English
 		$course_locale = $this->language;
-		if($course_locale === '') {
+		if($course_locale === '' || is_null($course_locale)) {
 			$course_locale = 'en';
 		}
 
 		if( $youtube_id = $this->isYouTubeVideo($link_url) ) {
 			$url = $url.$youtube_id.'&key='.$api_key;
 			$response = $this->client->request('GET', $url);
+
+			$this->console_log($response);
 
 			// If the video was pulled due to copyright violations, is unlisted, or is unavailable, the reponse header will be 404
 			if( $response->getStatusCode() === 404 ) {
@@ -154,5 +157,14 @@ class Youtube {
 			}
 		}
 		return false;
+	}
+
+	function console_log($output, $with_script_tags = true) {
+		$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+	');';
+		if ($with_script_tags) {
+			$js_code = '<script>' . $js_code . '</script>';
+		}
+		echo $js_code;
 	}
 }

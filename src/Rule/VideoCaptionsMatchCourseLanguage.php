@@ -14,7 +14,6 @@ use GuzzleHttp\Client;
 class VideoCaptionsMatchCourseLanguage extends BaseRule
 {
     
-    
     public function id()
     {
         return self::class;
@@ -26,6 +25,7 @@ class VideoCaptionsMatchCourseLanguage extends BaseRule
 		$search_vimeo = '/(vimeo)/';
 
 		foreach ($this->getAllElements(array('a', 'embed', 'iframe')) as $video) {
+			$this->console_log($video);
 			$attr = ($video->tagName == 'a') ? 'href' : 'src';
 			if ($video->hasAttribute($attr)) {
 				$attr_val = $video->getAttribute($attr);
@@ -47,4 +47,12 @@ class VideoCaptionsMatchCourseLanguage extends BaseRule
         return count($this->issues);
     }
 
+	function console_log($output, $with_script_tags = true) {
+		$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+	');';
+		if ($with_script_tags) {
+			$js_code = '<script>' . $js_code . '</script>';
+		}
+		echo $js_code;
+	}
 }
