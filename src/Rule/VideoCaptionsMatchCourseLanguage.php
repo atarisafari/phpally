@@ -24,6 +24,8 @@ class VideoCaptionsMatchCourseLanguage extends BaseRule
         $search_youtube = '/(youtube|youtu.be)/';
 		$search_vimeo = '/(vimeo)/';
 
+		$this->console_log("testing");
+
 		foreach ($this->getAllElements(array('a', 'embed', 'iframe')) as $video) {
 			$this->console_log($video);
 			$attr = ($video->tagName == 'a') ? 'href' : 'src';
