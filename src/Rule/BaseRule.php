@@ -40,7 +40,7 @@ class BaseRule implements PhpAllyRuleInterface {
         $this->maxWordCount = isset($options['maxWordCount']) 
             ? $options['maxWordCount'] : self::MAX_WORD_COUNT;
 
-            $this->console_log("hello");
+            $this->consoleLog("hello");
     }
 
     public function id()
@@ -199,12 +199,8 @@ class BaseRule implements PhpAllyRuleInterface {
 		return ($property_value == $value);
 	}
 
-    function console_log($output, $with_script_tags = true) {
-		$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
-	');';
-		if ($with_script_tags) {
-			$js_code = '<script>' . $js_code . '</script>';
-		}
-		echo $js_code;
+    function consoleLog($msg) {
+		echo '<script type="text/javascript">' .
+          'console.log(' . $msg . ');</script>';
 	}
 }
