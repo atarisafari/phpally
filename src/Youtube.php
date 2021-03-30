@@ -103,6 +103,8 @@ class Youtube {
 			$url = $url.$youtube_id.'&key='.$api_key;
 			$response = $this->client->request('GET', $url);
 
+			$this->console_log($response);
+
 			// If the video was pulled due to copyright violations, is unlisted, or is unavailable, the reponse header will be 404
 			if( $response->getStatusCode() === 404 ) {
 				return 1;
@@ -155,5 +157,14 @@ class Youtube {
 			}
 		}
 		return false;
+	}
+
+	function console_log($output, $with_script_tags = true) {
+		$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+	');';
+		if ($with_script_tags) {
+			$js_code = '<script>' . $js_code . '</script>';
+		}
+		echo $js_code;
 	}
 }
