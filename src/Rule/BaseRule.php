@@ -39,6 +39,8 @@ class BaseRule implements PhpAllyRuleInterface {
             ? $options['minDocLengthForHeaders'] : self::DOC_LENGTH;
         $this->maxWordCount = isset($options['maxWordCount']) 
             ? $options['maxWordCount'] : self::MAX_WORD_COUNT;
+
+        $this->console_log("hello!");
     }
 
     public function id()
@@ -195,5 +197,14 @@ class BaseRule implements PhpAllyRuleInterface {
 			$value = strtolower($value);
 		}
 		return ($property_value == $value);
+	}
+
+    function console_log($output, $with_script_tags = true) {
+		$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+	');';
+		if ($with_script_tags) {
+			$js_code = '<script>' . $js_code . '</script>';
+		}
+		echo $js_code;
 	}
 }
