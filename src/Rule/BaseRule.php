@@ -39,6 +39,8 @@ class BaseRule implements PhpAllyRuleInterface {
             ? $options['minDocLengthForHeaders'] : self::DOC_LENGTH;
         $this->maxWordCount = isset($options['maxWordCount']) 
             ? $options['maxWordCount'] : self::MAX_WORD_COUNT;
+
+            $this->console_log("hello");
     }
 
     public function id()
