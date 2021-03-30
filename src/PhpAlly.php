@@ -25,6 +25,7 @@ class PhpAlly {
                 $className = 'CidiLabs\\PhpAlly\\Rule\\' . $ruleId;
                 if (!class_exists($className)) {
                     $report->setError('Rule does not exist.');
+                    print("Rule does not exist");
                     continue;
                 }           
 
@@ -37,7 +38,7 @@ class PhpAlly {
                 $report->setError($e->getMessage());
             }
         }
-
+        print_r($report);
         return $report;
     }
 
