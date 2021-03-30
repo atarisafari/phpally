@@ -15,12 +15,36 @@ class PhpAllyTest extends PhpAllyTestCase {
         $this->phpAllyIssueTest($issue);
     }
 
+    public function testGetRuleIds() {
+        $ally = new PhpAlly();
+        $rules = $ally->getRuleIds();
+        // print_r($rules);
+    }
+
     public function testCheckMany() 
     {
         $ally = new PhpAlly();
-        $report = $ally->checkMany($this->getLinkHtml(), ['AnchorMustContainText']);
+        $html = '<p>
+        <a href="https://www.youtube.com/watch?v=MJ4DtLnTPvY" target="_blank" rel="noopener">https://www.youtube.com/watch?v=MJ4DtLnTPvY</a>
+    </p>
+    <p>&nbsp;</p>
+    <p>
+        <a href="https://www.youtube.com/watch?v=vFF0uV9AOB8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=vFF0uV9AOB8</a>
+    </p>
+    <p>
+        <a href="https://www.youtube.com/watch?v=vFF0uV9AOB8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=vFF0uV9AOB8</a>
+    </p>
+    <p>&nbsp;</p>
+    <p>
+        <a href="https://www.youtube.com/watch?v=QJMaAVAUpIs" target="_blank" rel="noopener">https://www.youtube.com/watch?v=QJMaAVAUpIs</a>
+    </p>
+    <p>These are some cool videos that I enjoy.&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>hiiiiiiiiiii</p>';
+        $report = $ally->checkMany($html, $ally->getRuleIds());
         $issues = $report->getIssues();
-        $issue = reset($issues);
+        print_r($issues);
+        // $issue = reset($issues);
 
         $this->phpAllyReportTest($report);
         $this->phpAllyIssueTest($issue);
@@ -30,7 +54,7 @@ class PhpAllyTest extends PhpAllyTestCase {
     protected function phpAllyReportTest($report)
     {
         $issues = $report->getIssues();
-        $this->assertCount(2, $issues, 'AnchorMustContainText test has two issues.');
+        $this->assertCount(1, $issues, 'AnchorMustContainText test has two issues.');
 
         $this->assertCount(0, $report->getErrors(), 'AnchorMustContainText test has no errors');
         $report->setError('Testing error');
