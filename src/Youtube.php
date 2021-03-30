@@ -127,6 +127,8 @@ class Youtube {
 					$foundManual = true;
 				}
 
+				$this->console_log(substr($track->snippet->language,0,2));
+
 				if( substr($track->snippet->language,0,2) == $course_locale && $trackKind != 'asr' ) {
 					return 2;
 				}
