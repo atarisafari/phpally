@@ -23,8 +23,10 @@ class VideoCaptionsMatchCourseLanguage extends BaseRule
     {
         $search_youtube = '/(youtube|youtu.be)/';
 		$search_vimeo = '/(vimeo)/';
+		print("Video language class being called");
 
 		foreach ($this->getAllElements(array('a', 'embed', 'iframe')) as $video) {
+			print($video);
 			$attr = ($video->tagName == 'a') ? 'href' : 'src';
 			if ($video->hasAttribute($attr)) {
 				$attr_val = $video->getAttribute($attr);
