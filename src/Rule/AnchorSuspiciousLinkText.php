@@ -22,6 +22,7 @@ class AnchorSuspiciousLinkText extends BaseRule
 
     public function check()
     {
+        $this->debug_to_console("hello");
         foreach ($this->getAllElements('a') as $a) {
             if (in_array(strtolower(trim($a->nodeValue)), $this->translation()) || $a->nodeValue == $a->getAttribute('href'))
 				$this->setIssue($a);
@@ -29,5 +30,25 @@ class AnchorSuspiciousLinkText extends BaseRule
 
         return count($this->issues);
     }
+
+    	    /**
+ * Simple helper to debug to the console
+ *
+ * @param $data object, array, string $data
+ * @param $context string  Optional a description.
+ *
+ * @return string
+ */
+function debug_to_console($data, $context = 'Debug in Console') {
+
+    // Buffering to solve problems frameworks, like header() in this and not a solid return.
+    ob_start();
+
+    $output  = 'console.info(\'' . $context . ':\');';
+    $output .= 'console.log(' . json_encode($data) . ');';
+    $output  = sprintf('<script>%s</script>', $output);
+
+    echo $output;
+}
 
 }
