@@ -23,6 +23,8 @@ class VideoCaptionsMatchCourseLanguage extends BaseRule
     {
         $search_youtube = '/(youtube|youtu.be)/';
 		$search_vimeo = '/(vimeo)/';
+		
+		$this->debug_to_console("hello from videocaptions");
 
 		foreach ($this->getAllElements(array('a', 'embed', 'iframe')) as $video) {
 			$this->console_log($video->tagName);
@@ -47,12 +49,23 @@ class VideoCaptionsMatchCourseLanguage extends BaseRule
         return count($this->issues);
     }
 
-	function console_log($output, $with_script_tags = true) {
-		$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
-	');';
-		if ($with_script_tags) {
-			$js_code = '<script>' . $js_code . '</script>';
-		}
-		echo $js_code;
-	}
+	    /**
+ * Simple helper to debug to the console
+ *
+ * @param $data object, array, string $data
+ * @param $context string  Optional a description.
+ *
+ * @return string
+ */
+function debug_to_console($data, $context = 'Debug in Console') {
+
+    // Buffering to solve problems frameworks, like header() in this and not a solid return.
+    ob_start();
+
+    $output  = 'console.info(\'' . $context . ':\');';
+    $output .= 'console.log(' . json_encode($data) . ');';
+    $output  = sprintf('<script>%s</script>', $output);
+
+    echo $output;
+}
 }
