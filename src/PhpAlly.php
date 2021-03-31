@@ -7,7 +7,7 @@ use DOMDocument;
 class PhpAlly {
     public function __construct()
     {
-
+        $this->debugToConsole("testing");
     }
 
     public function checkOne($content, $ruleId, $options = [])
@@ -59,4 +59,8 @@ class PhpAlly {
 
         return \json_decode($json, true);
     }
+
+    function debugToConsole($msg) { 
+        echo "<script>console.log(".json_encode($msg).")</script>";
+    }   
 }

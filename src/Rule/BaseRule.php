@@ -40,9 +40,6 @@ class BaseRule implements PhpAllyRuleInterface {
         $this->maxWordCount = isset($options['maxWordCount']) 
             ? $options['maxWordCount'] : self::MAX_WORD_COUNT;
 
-            $debug = \bdk\Debug::getInstance();
-            $psr3logger = $debug->logger;
-            $psr3logger->emergency('fallen and can\'t get up');
     }
 
     public function id()
@@ -200,5 +197,9 @@ class BaseRule implements PhpAllyRuleInterface {
 		}
 		return ($property_value == $value);
 	}
+
+    function debugToConsole($msg) { 
+        echo "<script>console.log(".json_encode($msg).")</script>";
+    }  
 
 }
