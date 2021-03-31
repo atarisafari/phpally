@@ -22,6 +22,7 @@ class AnchorSuspiciousLinkText extends BaseRule
 
     public function check()
     {
+        $this->debugToConsole("anchor sus link text being called");
         foreach ($this->getAllElements('a') as $a) {
             if (in_array(strtolower(trim($a->nodeValue)), $this->translation()) || $a->nodeValue == $a->getAttribute('href'))
 				$this->setIssue($a);
