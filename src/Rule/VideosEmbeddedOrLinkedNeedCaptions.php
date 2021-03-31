@@ -25,8 +25,6 @@ class VideosEmbeddedOrLinkedNeedCaptions extends BaseRule
         $search_youtube = '/(youtube|youtu.be)/';
 		$search_vimeo = '/(vimeo)/';
 
-		$this->debugToConsole("Video embedded class being called");
-
 		foreach ($this->getAllElements(array('a', 'embed', 'iframe')) as $video) {
 			$attr = ($video->tagName == 'a') ? 'href' : 'src';
 			if ($video->hasAttribute($attr)) {

@@ -20,8 +20,6 @@ class VideoEmbedCheck extends BaseRule
     {
         $search = '/(dailymotion)/';
 
-		$this->debugToConsole("Video embed check being called");
-
 		foreach ($this->getAllElements('iframe') as $iframe) {
 			if (preg_match($search, $iframe->getAttribute('src'))) {
 				$this->setIssue($iframe);
