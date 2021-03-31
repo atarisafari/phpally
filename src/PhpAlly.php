@@ -7,7 +7,7 @@ use DOMDocument;
 class PhpAlly {
     public function __construct()
     {
-        $this->debugToConsole("testing");
+        
     }
 
     public function checkOne($content, $ruleId, $options = [])
