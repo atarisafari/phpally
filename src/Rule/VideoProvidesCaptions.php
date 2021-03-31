@@ -18,6 +18,7 @@ class VideoProvidesCaptions extends BaseRule
 
     public function check()
     {
+		$this->debugToConsole("Video provides captions being called");
         foreach ($this->getAllElements('video') as $video) {
 			if (!$this->elementHasChild($video, 'track')) {
 				$this->setIssue($video);
