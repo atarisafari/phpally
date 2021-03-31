@@ -4,8 +4,78 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "38a20d824d4b55fa96a3f5e1554d789a",
+    "content-hash": "6a0a43b22b7d1e00eaa6432837857b65",
     "packages": [
+        {
+            "name": "bdk/debug",
+            "version": "v2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bkdotcom/PHPDebugConsole.git",
+                "reference": "09d4ed5aaa33c33e61e6815267d2f98818b20a18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bkdotcom/PHPDebugConsole/zipball/09d4ed5aaa33c33e61e6815267d2f98818b20a18",
+                "reference": "09d4ed5aaa33c33e61e6815267d2f98818b20a18",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "replace": {
+                "bdk/errorhandler": "2.3.1",
+                "bdk/pubsub": "2.3"
+            },
+            "require-dev": {
+                "bdk/css-xpath": "^1.0",
+                "psr/log": "^1.0"
+            },
+            "suggest": {
+                "bdk/debug-wamp-client": "Client to display logging published via PHPDebugConsole's WAMP plugin",
+                "bdk/wamp-publisher": "Publish messages to a WAMP (Web Application Messaging Protocol) router",
+                "psr/log": "PSR-3 : Common interface for logging libraries"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/Debug/Debug.php",
+                    "src/ErrorHandler/ErrorHandler.php"
+                ],
+                "psr-4": {
+                    "bdk\\Debug\\": "src/Debug/",
+                    "bdk\\ErrorHandler\\": "src/ErrorHandler/",
+                    "bdk\\PubSub\\": "src/PubSub/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brad Kent",
+                    "email": "bkfake-github@yahoo.com",
+                    "homepage": "http://www.bradkent.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Browser/javascript like console class for PHP",
+            "homepage": "http://github.com/bkdotcom/PHPDebugConsole",
+            "keywords": [
+                "ChromeLogger",
+                "debug",
+                "debugging",
+                "errorhandler",
+                "firephp",
+                "inspect",
+                "logger",
+                "phpdebugconsole",
+                "psr-3",
+                "var_dump"
+            ],
+            "time": "2020-06-02T15:53:56+00:00"
+        },
         {
             "name": "guzzlehttp/guzzle",
             "version": "7.3.0",
