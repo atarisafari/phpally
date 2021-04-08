@@ -293,7 +293,7 @@ class CssTextStyleEmphasize extends BaseRule
 	 */
 	function getElementAncestor($element, $ancestor_tag, $limit_tag = 'body')
 	{
-		while (property_exists($element, 'parentNode')) {
+		while (property_exists($element->parentNode, 'tagName')) {
 			if ($element->parentNode->tagName == $ancestor_tag) {
 				return $element->parentNode;
 			}
