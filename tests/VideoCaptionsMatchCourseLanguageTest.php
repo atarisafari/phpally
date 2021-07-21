@@ -114,23 +114,23 @@ class VideoCaptionsMatchCourseLanguageTest extends PhpAllyTestCase {
         $this->assertEquals(0, $ruleMock->check());
     }
 
-    // public function testKaltura()
-    // {
-    //     $html = '<iframe id="kaltura_player_1626379517" src="https://cdnapisec.kaltura.com/p/4183983/sp/418398300/embedIframeJs/uiconf_id/48252953/partner_id/4183983?iframeembed=true&playerId=kaltura_player_1626379517&entry_id=1_qgxxsknz" width="400" height="333" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" frameborder="0"></iframe>';
-    //     $dom = new \DOMDocument('1.0', 'utf-8');
-    //     $dom->loadHTML($html);
+    public function testKaltura()
+    {
+        $html = '<iframe id="kaltura_player_1626379517" src="https://cdnapisec.kaltura.com/p/4183983/sp/418398300/embedIframeJs/uiconf_id/48252953/partner_id/4183983?iframeembed=true&playerId=kaltura_player_1626379517&entry_id=1_qgxxsknz" width="400" height="333" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" frameborder="0"></iframe>';
+        $dom = new \DOMDocument('1.0', 'utf-8');
+        $dom->loadHTML($html);
 
-    //     $options = [
-    //         'vimeoApiKey' => 'test',
-    //         'youtubeApiKey' => 'test',
-    //         'kalturaApiKey' => '6f6981febe62b5714eff624f52a92453',
-    //         'kalturaUsername' => 'ethan@cidilabs.com'
-    //     ];
+        $options = [
+            'vimeoApiKey' => 'test',
+            'youtubeApiKey' => 'test',
+            'kalturaApiKey' => '6f6981febe62b5714eff624f52a92453',
+            'kalturaUsername' => 'ethan@cidilabs.com'
+        ];
 
-    //     $rule = new VideoCaptionsMatchCourseLanguage($dom, $options);
+        $rule = new VideoCaptionsMatchCourseLanguage($dom, $options);
 
-    //     $this->assertEquals(0, $rule->check());
-    // }
+        $this->assertEquals(0, $rule->check());
+    }
 
     
 }
